@@ -14,8 +14,7 @@ function App() {
       setQuestions(await getQuestions(5, "easy"));
     }
     fetchData();
-    console.log(questions);
-
+    console.log("question: ", questions);
   }, []);
 
   return (
