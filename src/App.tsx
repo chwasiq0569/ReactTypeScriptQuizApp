@@ -8,17 +8,13 @@
 
 import TextField from "./components/TextField"
 
-
- 
 const App: React.FC = () => {
 
-  const myFunc = (bob: string): string => {
-        return bob + "is Good Boy"
-  }
-
+  const myFunc = (name: string): string => name + " is Good Boy"
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): string => e.target.value
   return ( <div>
-     <TextField text="HELLO" ok={true} i={1} fn={myFunc} person={{firstname: "Wasiq", lastname: "Abdullah"}} />
-  </div> );
+                <TextField text="REACT-TYPESCRIPT IS EASY" male={true} age={21} fn={myFunc} fullname={{firstname: "Wasiq", lastname: "Abdullah"}} handleChange={handleChange} />
+           </div> );
 }
  
 export default App;
