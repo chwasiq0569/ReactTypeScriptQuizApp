@@ -1,0 +1,86 @@
+#simulate_popup{
+    position: fixed;
+	z-index: 3;
+    width: 400px;
+    height: 200px;
+    top: 50%;
+    margin-top: -100px;
+	left: 50%;
+	margin-left: -200px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #6a757c;
+    background-color: #f9f9f9;
+    cursor: default;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	font-family: Arial;
+    display: none;
+    overflow: hidden;
+}
+
+#ask_permission{
+    display: none;
+}
+
+#ask_message{
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 300px;
+}
+
+#permission_buttons{
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+#keep_simulation, #delete_simulation{
+    margin: 0 20px;
+    text-align: center;
+    border: solid;
+    border-width: 1px;
+    border-color: #6a757c;
+    border-radius: 5px;
+    background-color: white;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+}
+
+#keep_simulation:hover, #delete_simulation:hover, #close_sim_popup:hover{
+    background-color: rgb(247, 245, 245);
+}
+
+#calculating{
+    display: none;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 25px;
+    line-height: 200px;
+}
+
+#finished_calculating{
+    display: block;
+}
+
+#sim_error_message{
+    text-align: center;
+    margin: 40px auto;
+}
+
+#close_sim_popup{
+    text-align: center;
+    border: solid;
+    border-width: 1px;
+    border-color: #6a757c;
+    border-radius: 5px;
+    background-color: white;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+}

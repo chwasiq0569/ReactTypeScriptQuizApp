@@ -1,0 +1,190 @@
+/************************************* Parameters Button **********************/
+
+/* #parameters_button{
+	position: fixed;
+	z-index: 2;
+	top: 45px;
+	right: 140px;
+	width: 116px;
+	height: 31px;
+	line-height: 31px;
+	font-family: Arial;
+	font-size: 17px;
+	text-align: center;
+	color: red;
+	border: solid red 2px;
+	border-radius: 5px;
+	display: block;
+} */
+
+#parameters_popup{
+	position: absolute;
+	display: none;
+	z-index: 2;
+	top: 35;
+	right: -135px;
+	width: 225px;
+	height: 350px;
+	border-radius: 10px;
+	font-size: 13px;
+	border: solid 1px red;
+	background: white;
+	overflow: hidden;
+	white-space: normal;
+	line-height: normal;
+}
+
+#parameters_popup td{
+	text-align: center;
+	padding: 5px 5px;
+}
+
+#parameters_popup table{
+	display: block;
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 241px;
+	height: 350px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#parameters_popup table td{
+	min-width: 65px;
+}
+
+#parameters_popup td{
+	max-width: 70px;
+}
+
+#param_switch_cont{
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	margin-top: 15px;
+	z-index: 3;
+	background: white;
+}
+
+#param_switch_cont td{
+	text-align: center;
+}
+
+#param_header_row{
+	top: 65px;
+	border-top: solid 2px black;
+	border-bottom: solid 2px black;
+}
+
+#param_switch_cont>tr{
+	position: absolute;
+	z-index: 3;
+	background: white;
+}
+
+#param_switch_cont>tr:first-child{
+	top: -10px;
+	padding: 20px 0px;
+}
+
+.filled {
+	color: black;
+}
+
+.filled input{
+	color: black;
+}
+
+.unfilled, .unfilled input {
+	color: red;
+}
+
+.last{
+	border-bottom: solid 1px black;
+}
+
+#params_table{
+	position: relative;
+	top: 80px;
+	display: table;
+}
+
+#params_table tr{
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+
+#params_table input{
+	width: 100%;
+}
+
+.invisible {
+	opacity: 0;
+}
+
+.invisible td{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+/******************************* Switch ***************************************/
+
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 45px;
+	height: 25px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 18px;
+	width: 18px;
+	left: 3px;
+	bottom: 3.5px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: red;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(21px);
+	-ms-transform: translateX(21px);
+	transform: translateX(21px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 25px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }

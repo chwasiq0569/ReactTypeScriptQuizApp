@@ -1,41 +1,76 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import "./Styles/InfraPopup.css";
+import "./Styles/Interface.css";
+import "./Styles/MissingParams.css";
+import "./Styles/Results.css";
+import "./Styles/SimulatePopup.css";
+import "./Styles/StreamPopup.css";
+import { changeViewReducer } from './redux/Reducer/ChangeViewRed';
+
+type MyProps = {
+  msg: string,
+  view: string
+}
+interface MyState {
+  view: string
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-/* import React, { useRef, useEffect } from 'react'
+class Notice extends Component<MyProps, MyState> {
+  private file: React.RefObject<HTMLDivElement>;
+  private prefs: React.RefObject<HTMLDivElement>;
+  private display: React.RefObject<HTMLDivElement>;
+  private create: React.RefObject<HTMLDivElement>;
+  private actions: React.RefObject<HTMLDivElement>;
+  private overview: React.RefObject<HTMLDivElement>;
 
-class Canvas extends React.Component{
-    // file:HTMLElement;
-    // prefs:HTMLElement;
-    // display:HTMLElement;
-    // create:HTMLElement;
-    // actions:HTMLElement;
-    // overview:HTMLElement;
-    constructor(props: any){
-        super(props)
-        this.state = {
-			color: "red"
-        };
-		this.myRef = React.createRef();
-        // this.file = document.getElementById("file");
-        // this.prefs = document.getElementById("preferences");
-        // this.ref={this.prefs}  = document.getElementById("display");
-        // this.create = document.getElementById("create");
-        // this.actions = document.getElementById("actions");
-        // this.overview = document.getElementById("overview");
-    }
-    render(){
-return (<div ref={myRef} id="action_bar" className="ui_container">
-		<div id="file" className="action"> 
+  constructor(props: any){
+  	super(props)
+	 this.file = React.createRef();
+	 this.prefs = React.createRef();
+	 this.display = React.createRef();
+	 this.create = React.createRef();
+	 this.actions = React.createRef();
+	 this.overview = React.createRef();
+  }
+//   state = {
+// 	value: "str"
+//   }
+
+  static defaultProps = {
+    msg: 'Hello everyone!'
+  }
+  componentDidMount(){
+ 	console.log(this.file.current)
+  }
+	  setDisplayUI(){
+		    let elems = [this.display, this.create, this.actions]
+
+	        // elems.map(function(elems){
+	        // //    elems.style.display = "inline-block";
+	        // });
+
+	        // this.overview.style.display = "none"; 
+	        // this.display.style.display = "inline-block"
+	    }
+		setResultsUI(){
+		        // var elems = "display create actions".split(" ");
+		        // var obj = this;
+		        // elems.map(function(item){
+		        //     obj[item].style.display = "none";
+		        // });
+		        // this.display.style.display = "inline-block"
+		        // this.overview.style.display = "none"; 
+		}
+		checkdisp(){
+			return this.props?.view === "canvas" ? "none" : "inline-block"
+		}
+  render() {
+//   console.log(this.props?.view);
+
+    return (
+		<div id="action_bar" className="ui_container">
+		<div  ref={this.file} id="file" className="action"> 
         <span id="file_trans"> File </span>
 			<div id="file_drop" className="tool_drop">
 				<a href="#" id="pref_text" className="action_drop sim_name_holder"> plant example 1 </a>
@@ -58,8 +93,7 @@ return (<div ref={myRef} id="action_bar" className="ui_container">
 				<span id="back_to_files" className="action_drop"> Back to Files </span>
 			</div>
 		</div>
-		<div id="preferences" className="action"> <span id="preferences_trans"
-				>Preferences</span>
+		<div ref={this.prefs} id="preferences" className="action"> <span id="preferences_trans">Preferences</span>
 			<div id="pref_drop" className="tool_drop">
 				<span className="action_drop" id="display_trans" >Display
 					<svg className="disp_triangle" width="15px" height="35px">
@@ -139,7 +173,7 @@ return (<div ref={myRef} id="action_bar" className="ui_container">
 					</span>
 				</div>
 
-				<span id="pref_units" className="action_drop"> <span id="pref_units_trans">
+				<span  id="pref_units" className="action_drop"> <span id="pref_units_trans">
 						Units </span>
 					<svg className="disp_triangle" width="15px" height="35px">
 						<polygon points="0,15 10,20 0,25"></polygon>
@@ -281,20 +315,20 @@ return (<div ref={myRef} id="action_bar" className="ui_container">
 				</div>
 			</div>
 		</div>
-		<div id="create" className="action"> <span id="create_trans">Create</span>
+		<div style={{display: this.checkdisp()}} ref={this.create}  id="create" className="action"> <span id="create_trans">Create</span>
 			<div id="create_drop" className="tool_drop">
 				<span id="create_equip" className="action_drop"> Equipment type </span>
 				<span id="create_stream" className="action_drop"> Stream type </span>
 			</div>
 		</div>
-		<div id="actions" className="action"> <span id="actions_trans">Actions</span>
+		<div style={{display: this.checkdisp()}} ref={this.actions}  id="actions" className="action"> <span id="actions_trans">Actions</span>
 			<div id="actions_drop" className="tool_drop">
 				<span id="actions_consolidate" className="action_drop"> Consolidate Process </span>
 				<span id="actions_save" className="action_drop"> Save Process </span>
 				<span id="actions_tidy" className="action_drop"> Tidy Arrows </span>
 			</div>
 		</div>
-		<div id="overview" className="action" ><span id="overview_trans">Overview</span>
+		<div ref={this.overview} id="overview" className="action" ><span id="overview_trans">Overview</span>
 			<div id="overview_drop" className="tool_drop">
 				<span id="overview_inputs" className="action_drop"> <span id="overview_inputs_trans"> Inputs </span>
 					<svg className="disp_triangle" width="15px" height="35px">
@@ -326,9 +360,18 @@ return (<div ref={myRef} id="action_bar" className="ui_container">
 				</span>
 			</div>
 		</div>
-	</div>)
+	</div>
+	)
+  }
 }
-    }
- 
+function mapStateToProps(state: MyState) {
+  return {
+    view: state.view
+  };
+}
 
-export default Canvas */
+const mapDispatchToProps = {
+  changeViewReducer
+}
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(Notice)

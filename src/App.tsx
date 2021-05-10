@@ -1,52 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import {getQuestions} from "./services/services";
-import { QuestionType } from "./Types/types";
-import Questions from "./components/Questions";
-import './assets/output.css';
+// import './App.css';
+// import "./Styles/InfraPopup.css";
+// import "./Styles/Interface.css";
+// import "./Styles/MissingParams.css";
+// import "./Styles/Results.css";
+// import "./Styles/SimulatePopup.css";
+// import "./Styles/StreamPopup.css";
 
-function App() {
+import TextField from "./components/TextField"
 
-  const [questions, setQuestions]  = useState<QuestionType[]>([]);
-  let [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  useEffect(() => {
-   const fetchData = async () => {
-      setQuestions(await getQuestions(5, "easy"));
-    }
-    
-    fetchData();
-  }, []);
 
-  
+ 
+const App: React.FC = () => {
 
-  const callback = () => {
-    if(currentQuestion < questions.length - 1){
-      setCurrentQuestion(++currentQuestion);
-    }
-    else{
-      console.log("Wrong Answer")
-      alert("Quiz End");
-    }
+  const myFunc = (bob: string): string => {
+        return bob + "is Good Boy"
   }
 
-  const checkAnswer = (e: React.FormEvent<EventTarget>, selectedAnswer: string, answer: string) => {
-    e.preventDefault();
-    if(selectedAnswer === answer){
-      callback();
-    }
-    else{
-      console.log("Wrong Answer")
-      alert("Wrong Answer Try Again");
-    }
-  }
-
-  if(!questions.length) return <h1>Loading</h1>;
-
-  return (
-    <div className="App">
-        <Questions question={questions[currentQuestion]?.question} correct_answer={questions[currentQuestion]?.correct_answer} incorrect_answers={questions[currentQuestion]?.incorrect_answers} checkAnswer={checkAnswer} />
-    </div>
-  );
+  return ( <div>
+     <TextField text="HELLO" ok={true} i={1} fn={myFunc} person={{firstname: "Wasiq", lastname: "Abdullah"}} />
+  </div> );
 }
-
+ 
 export default App;
